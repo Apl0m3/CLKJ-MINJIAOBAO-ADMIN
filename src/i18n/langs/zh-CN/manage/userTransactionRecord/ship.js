@@ -1,0 +1,16 @@
+module.exports = {
+  title:'发货',
+  deliveryMethodId:'物流方式',
+  deliveryMethodId1:'外部物流',
+  deliveryMethodId2:'平台物流',
+  logisticsId:'物流单号',
+  logisticsIdPla:'请输入物流单号',
+  no:'物流公司',
+  noPla:'请输入物流公司名称',
+  deliveryStaffId:'配送员',
+  deliveryStaffIdPla:'请输入配送员名称',
+  deliveryMethodIdRule:'请选择物流方式',
+  shipmentIdRule:'请输入物流单号',
+  noRule:'请搜索并选择物流公司',
+  deliveryStaffIdRule:'请搜索并选择快递员',
+}

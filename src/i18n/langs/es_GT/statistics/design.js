@@ -1,0 +1,37 @@
+module.exports = {
+  title:'Liquidación de la comisión',
+  mail:'Correo electrónico',
+  name:'Nombre del usuario',
+  role:'Rol de usuario',
+  unSettlementOrderNum:'Cantidad de pedido sin solucionar',
+  unSettlementCommission:'Comisión de pedido sin solucionar',
+  commission:'Comisión',
+  totalCommission:'Comisión total',
+  settlementCommission:'Comisión liquidado',
+  settlement:'Liquidado',
+  noSettlement:'Sin liquidar',
+  operate:{
+    walletInformation:'Información del monedero',
+    unSettlementMoney:'Importe sin liquidar',
+    totalMoney:'Importe total',
+    settlementMoney:'Liquidado',
+    bankAccountInfo:'Información de la cuenta bancaria',
+    commissionRecord:'佣金记录',
+    settledCommission: '已结算佣金记录',
+    unsettledCommission: '未结算佣金记录',
+    bankAccount:'Número de tarjeta bancaria',
+    bankName:'Nombre del banco',
+    bankUserName:'Titular de la cuenta',
+    image:'Imagen del producto',
+    info:'Información del producto',
+    commodityType:'Tipo de producto',
+    transactionId:'Número de pedido',
+    cname:'Nombre del producto',
+    message:'¿Estás seguro de que se ha transferido[amount]a la cuenta bancaria del usuario?'
+  },
+  dataRule:{
+    userId:'No puede estar vacío',
+    commodityTypeId:'No puede estar vacío',
+    commission:'Comisión no puede estar vacía',
+  }
+}

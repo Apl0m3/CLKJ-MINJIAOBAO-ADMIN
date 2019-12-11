@@ -1,0 +1,42 @@
+// 菜单管理的多语言
+module.exports = {
+  name:'名称',
+  nameEs:'名称西班牙语',
+  parentName:'上级菜单',
+  i18n:'语言切换名称',
+  icon:'图标',
+  type:'类型',
+  catalog:'目录',
+  menu:'菜单',
+  button:'按钮',
+  orderNum:'排序号',
+  perms:'授权标识',
+  url:'菜单路由',
+  //新增菜单弹出表单的多语言
+  select_placeholder:'点击选择上级菜单',
+  input_placeholder:'多个用逗号分隔, 如: user:list,user:create',
+  content:'全站推荐使用SVG Sprite, 详细请参考:',
+  validate: require("./validate"),
+  iconPla:'请选择菜单图标名称',
+  loadingText:'拼命加载中',
+  tabsCloseCurrentHandle:'关闭当前标签页',
+  tabsCloseOtherHandle:'关闭其它标签页',
+  tabsCloseAllHandle:'关闭全部标签页',
+  tabsRefreshCurrentHandle:'刷新当前标签页',
+  Chinese:'中文',
+  Spanish:'Español',
+  updatePass:'修改密码',
+  checkOut:'退出',
+  quit:'确定退出?',
+
+  userName:'账号',
+  password:'原密码',
+  newPassword:'新密码',
+  confirmPassword:'确认密码',
+  confirmPasswordError:'确认密码与新密码不一致',
+  passwordRule:'原密码不能为空',
+  newPasswordRule:'新密码不能为空',
+  confirmPasswordRule:'确认密码不能为空',
+
+  noAvailableTagError:'未能找到可用标签页!'
+}

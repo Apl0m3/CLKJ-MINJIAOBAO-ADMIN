@@ -1,0 +1,20 @@
+module.exports = {
+  ruleType:'规则类型',
+  integral:'积分',
+  type:'积分规则类型',
+  type1:'消费返积分规则',
+  type2:'首次分享规则',
+  condition:'规则',
+  rule1:'每消费factor元，获得result积分',
+  rule2:'每分享factor个网站，获得result积分',
+  conditionTitle:'购买超过',
+  conditionUnit:'元',//表示多少钱
+  resultTitle:'获得',
+  resultUnit:'积分',
+  typeRule: '1-消费规则，2-分享不能为空',
+  factorRule: '条件不能为空',
+  resultRule: '结果不能为空',
+  title1:'每消费',
+  title2:'每分享',
+  website:'网站',
+}

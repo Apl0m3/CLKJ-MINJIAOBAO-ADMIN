@@ -1,0 +1,25 @@
+module.exports = {
+  name:'Nombre',
+  mail:'Correo electrónico',
+  createTime:'Solicitado',
+  typeName:'Tipo de industria',
+  status:'Estado de revisión',
+  status1:'En revisión',
+  status2:'Ha sido revisado correctamente',
+  status3:'Revisión denegada',
+  applicationTime:'Fecha de revisión',
+  applicationName:'Revisor',
+  check:'Revisar',
+  see:'Ver',
+  setDiscount:'Establecer tasa de descuento',
+  detail:{
+    title:'Detalles de solicitud',
+    addressName:'Dirección',
+    postalCode:'Código postal',
+    provinceStr:'Provincia',
+    cityStr:'Ciudad',
+    country:'País',
+    businessLicenseUrl:'Licencia comercial',
+    reason:'El motivo de revisión ha sido denegada',
+  }
+}

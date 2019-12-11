@@ -1,0 +1,42 @@
+// 菜单管理的多语言
+module.exports = {
+  name:'Nombre',
+  nameEs:'Nombre español',
+  parentName:'Menú superior',
+  i18n:'Nombre de cambio de idioma',
+  icon:'Icono',
+  type:'Tipo',
+  catalog:'Directorio',
+  menu:'Menú',
+  button:'Botón',
+  orderNum:'Ordenar número',
+  perms:'ID de autorización',
+  url:'Enrutamiento de menú',
+  //新增菜单弹出表单的多语言
+  select_placeholder:'Seleccionar el menú superior',
+  input_placeholder:'La separación utilice con comas, por ejemplo: user:list,user:create',
+  content:'Se recomienda SVG Sprite para toda esta acción. Consulte los detalles:',
+  validate: require("./validate"),
+  iconPla:'Selecciona el nombre del icono del menú',
+  loadingText:'Cargando',
+  tabsCloseCurrentHandle:'Cerrar la pestaña actual',
+  tabsCloseOtherHandle:'Cerrar otras pestañas',
+  tabsCloseAllHandle:'Cerrar todas las pestañas',
+  tabsRefreshCurrentHandle:'Actualiza la pestaña actual',
+  Chinese:'Chino',
+  Spanish:'Español',
+  updatePass:'Modificar contraseña',
+  checkOut:'Salir',
+  quit:'¿Estas seguro que quieres salir?',
+
+  userName:'Cuenta',
+  password:'Contraseña actual',
+  newPassword:'Nueva contraseña',
+  confirmPassword:'Confirmación de nueva contraseña',
+  confirmPasswordError:'Las contraseñas no coinciden',
+  passwordRule:'La contraseña actual no puede estar vacía',
+  newPasswordRule:'Nueva contraseña no puede estar vacía',
+  confirmPasswordRule:'Confirmación de nueva contraseña no puede estar vacía',
+
+  noAvailableTagError:'¡Esta página no está disponible!'
+}

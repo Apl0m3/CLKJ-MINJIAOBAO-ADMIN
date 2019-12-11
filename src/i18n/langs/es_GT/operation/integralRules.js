@@ -1,0 +1,20 @@
+module.exports = {
+  ruleType:'Tipo de regla',
+  integral:'Puntos',
+  type:'Tipo de regla integración',
+  type1:'Regla de punto de retorno de consumo',
+  type2:'Regla para compartir',
+  condition:'Regla',
+  rule1:'Cada consumo factor €，Obtendrás result puntos',
+  rule2:'Cada compartido factor sitio web，Obtendrás result puntos',
+  conditionTitle:'购买超过',
+  conditionUnit:'€',//表示多少钱
+  resultTitle:'Obtener',
+  resultUnit:'Puntos',
+  typeRule: '1-Reglas de consumo，2-El compartido no puede estar vacío',
+  factorRule: 'La condición no puede estar vacía',
+  resultRule: 'El resultado no puede estar vacío',
+  title1:'Consumo',
+  title2:'Compartido',
+  website:'Sitio web',
+}

@@ -1,0 +1,25 @@
+module.exports = {
+  name:'姓名',
+  mail:'邮箱',
+  createTime:'申请时间',
+  typeName:'行业类型',
+  status:'审核状态',
+  status1:'待审核',
+  status2:'审核成功',
+  status3:'审核失败',
+  applicationTime:'审核时间',
+  applicationName:'审核人',
+  check:'审核',
+  see:'查看',
+  setDiscount:'设置折扣率',
+  detail:{
+    title:'申请详情',
+    addressName:'地址',
+    postalCode:'邮编',
+    provinceStr:'省份',
+    cityStr:'城市',
+    country:'国家',
+    businessLicenseUrl:'营业执照',
+    reason:'失败原因',
+  }
+}

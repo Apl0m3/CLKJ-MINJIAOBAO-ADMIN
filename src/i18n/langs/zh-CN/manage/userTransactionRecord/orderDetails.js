@@ -1,0 +1,40 @@
+module.exports = {
+  title1:'买家信息:',
+  userName:'下单用户',
+
+  title2:'订单信息',
+  createTime:'下单时间：',
+  transactionId:'订单号：',
+  tripartiteTransactionId:'支付单号：',
+  paymentMethodId:'支付方式：',
+  totalAmount:'总金额：',
+  integralDeductionAmount:'优惠劵抵扣金额：',
+  rate:'税率：',
+  discount:'折扣：',
+  amount:'支付金额：',
+  remarks:'卖家留言：',
+
+
+  address:'收货地址信息：',
+  addressName:'收货人名称：',
+  addressPhone:'收货人电话：',
+  addressCountry:'国家：',
+  addressProvinceStr:'省份：',
+  addressCityStr:'城市：',
+  addressAddress:'详细地址：',
+  addressPostalCode:'邮政编码：',
+
+  title3:'发票信息',
+  invoiceCompanyName:'公司名称：',
+  invoiceName:'联系人名称：',
+  invoicePhone:'联系人电话：',
+  invoiceTaxNum:'税号：',
+
+  title4:'订单商品',
+  image:'图片',
+  name:'商品名称',
+  commodityNum:'数量',
+  expectTime:'预计到货时间',
+  attribute:'属性',
+  status: '状态',
+}

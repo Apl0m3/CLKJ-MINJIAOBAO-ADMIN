@@ -1,0 +1,37 @@
+module.exports = {
+  title:'佣金结算',
+  mail:'邮箱',
+  name:'用户名',
+  role:'用户角色',
+  unSettlementOrderNum:'未结算订单数量',
+  unSettlementCommission:'未结算订单佣金',
+  commission:'佣金',
+  totalCommission:'总佣金',
+  settlementCommission:'已结算佣金',
+  settlement:'结算',
+  noSettlement:'暂无结算',
+  operate:{
+    walletInformation:'钱包信息',
+    unSettlementMoney:'未结算金额',
+    totalMoney:'总金额',
+    settlementMoney:'已结算金额',
+    bankAccountInfo:'银行账户信息',
+    commissionRecord:'佣金记录',
+    settledCommission: '已结算佣金记录',
+    unsettledCommission: '未结算佣金记录',
+    bankAccount:'银行卡号',
+    bankName:'银行名称',
+    bankUserName:'开户人名称',
+    image:'商品图片',
+    info:'商品信息',
+    commodityType:'商品类型',
+    transactionId:'订单号',
+    cname:'商品名称',
+    message:'确定[amount]已转账到用户的银行账户中?'
+  },
+  dataRule:{
+    userId:'不能为空',
+    commodityTypeId:'不能为空',
+    commission:'佣金不能为空',
+  }
+}

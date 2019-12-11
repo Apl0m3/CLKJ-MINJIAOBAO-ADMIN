@@ -1,0 +1,16 @@
+module.exports = {
+  title:'Envío',
+  deliveryMethodId:'Método de logística',
+  deliveryMethodId1:'Logística externa',
+  deliveryMethodId2:'Logistica de plataforma',
+  logisticsId:'Número de pedido de logística',
+  logisticsIdPla:'Introduce número de pedido de logística',
+  no:'Empresa de logística',
+  noPla:'Introduce el nombre de la empresa de logística',
+  deliveryStaffId:'Personal de entrega',
+  deliveryStaffIdPla:'Introduce el nombre de la personal de entrega',
+  deliveryMethodIdRule:'Seleccione el método de logística',
+  shipmentIdRule:'Ingrese el número de pedido de logística',
+  noRule:'Busque y seleccione una empresa de logística',
+  deliveryStaffIdRule:'Busque y seleccione un servicio de mensajería',
+}

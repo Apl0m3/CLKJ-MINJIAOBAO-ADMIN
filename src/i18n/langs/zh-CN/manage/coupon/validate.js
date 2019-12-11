@@ -1,0 +1,17 @@
+module.exports = {
+  nameRule:'优惠卷名称不能为空',
+  wrongName:'含有非法字符',
+  couponTypeRule:'请选择优惠卷类型',
+  useStartAtRule:'请选择正确的时间',
+  useEndAtRule:'请选择正确的时间',
+  totalNumRule:'总张数不能为空',
+  conditionRule:'优惠劵条件不能为空',
+  resultRule:'优惠不能为空',
+  generalRule:'优惠券平台通用不能为空',
+  mustNum:'只能为正整数,如:1,2,3',
+  imageRule:'图片不能为空',
+  commodityIdRule:'请选择商品',
+  userIdRule:'请选择用户',
+  numRule:'请输入有效数字,可保留两位小数',
+  instructionsRule:'使用说明不能为空',
+}
