@@ -5,7 +5,7 @@
     :popper-class="'site-sidebar--' + sidebarLayoutSkin + '-popper'">
     <template slot="title">
       <icon-svg :name="menu.icon || ''" class="site-sidebar__menu-icon"></icon-svg>
-      <span>{{$t(menu.i18n)}}</span>
+      <span>{{(menu.name)}}</span>
     </template>
     <sub-menu
       v-for="item in menu.list"
@@ -16,7 +16,8 @@
   </el-submenu>
   <el-menu-item v-else :index="menu.menuId + ''" @click="gotoRouteHandle(menu)">
     <icon-svg :name="menu.icon || ''" class="site-sidebar__menu-icon"></icon-svg>
-    <span>{{$t(menu.i18n)}}</span>
+   <!-- <span>{{$t(menu.i18n)}}</span>-->
+    <span>{{menu.name}}</span>
   </el-menu-item>
 </template>
 
