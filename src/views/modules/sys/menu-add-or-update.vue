@@ -14,12 +14,12 @@
         <el-input v-model="dataForm.name"
                   :placeholder="dataForm.typeList[dataForm.type] + $t('sys.menu.name')"></el-input>
       </el-form-item>
-      <el-form-item v-if="dataForm.type!==2"
-                    label="i18n"
-                    prop="i18n"
-                    :rules="{required: true, message: this.$t('sys.menu.validate.i18nValidate'), trigger: 'blur'}">
-        <el-input v-model="dataForm.i18n" :placeholder="$t('sys.menu.i18n')"></el-input>
-      </el-form-item>
+      <!--<el-form-item v-if="dataForm.type!==2"-->
+                    <!--label="i18n"-->
+                    <!--prop="i18n"-->
+                    <!--:rules="{required: true, message: this.$t('sys.menu.validate.i18nValidate'), trigger: 'blur'}">-->
+        <!--<el-input v-model="dataForm.i18n" :placeholder="$t('sys.menu.i18n')"></el-input>-->
+      <!--</el-form-item>-->
       <el-form-item :label="$t('sys.menu.parentName')" prop="parentName">
         <el-popover
           ref="menuListPopover"

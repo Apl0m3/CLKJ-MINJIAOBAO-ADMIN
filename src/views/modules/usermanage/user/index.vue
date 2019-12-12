@@ -171,12 +171,9 @@
     <!-- 弹窗, 新增 / 修改 -->
     <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>
 
-    <!--  查看用户积分记录-->
-    <user-integral-log v-if="userIntegralLogVisible" ref="userIntegralLog"
-                       @refreshDataList="getDataList"></user-integral-log>
-    <!--用户钱包-->
-    <user-integral-log v-if="userIntegralLogVisible" ref="userIntegralLog"
-                       @refreshDataList="getDataList"></user-integral-log>
+    <!--&lt;!&ndash;用户钱包&ndash;&gt;-->
+    <!--<user-integral-log v-if="userIntegralLogVisible" ref="userIntegralLog"-->
+                       <!--@refreshDataList="getDataList"></user-integral-log>-->
     <!--  查看用户收藏记录-->
     <!--<user-collection v-if="userCollectionVisible" ref="userCollection"-->
     <!--@refreshDataList="getDataList"></user-collection>-->
@@ -192,10 +189,7 @@
 <script>
     import {user} from '@/action/user'
     import AddOrUpdate from './add-or-update'
-    import UserIntegralLog from './user-integral-log'
-    import UserCollection from './user-collection'
-    import UpdateUserIntegral from './update-user-integral'
-    import InvitationUser from './invitation-user'
+    // import UserIntegralLog from './user-integral-log'
     import {message} from "../../../../action/message";
 
     export default {
@@ -274,8 +268,8 @@
             }
         },
         components: {
-            AddOrUpdate,
-            UserIntegralLog,
+            AddOrUpdate
+            // UserIntegralLog,
         },
         activated() {
             this.getDataList()
