@@ -9,18 +9,23 @@ export const user = {
     method: 'post',
     data: http.adornData(params, false)
   }),
-  // 获取下属用户积分列表
-  getInvitationUserLog: (params) => http({
-    url: http.adornUrl('/manage/user/getInvitationUserLog'),
-    method: 'post',
-    data: http.adornData(params, false)
+  // 获取列表
+  examineList: (params) => http({
+    url: http.adornUrl('/manage/user/examineList'),
+    method: 'get',
+    params: http.adornParams(params, false)
   }),
-
 // 获取信息
   info: (id) => http({
     url: http.adornUrl('/manage/user/info' + (isInteger(id) ? `/${id}` : '')),
     method: 'get',
     params: http.adornParams({}, false)
+  }),
+  // 获取信息
+  examineUser: (params) => http({
+    url: http.adornUrl('/manage/user/examineUser'),
+    method: 'get',
+    params: http.adornParams(params, false)
   }),
 
 // 添加
@@ -55,22 +60,5 @@ export const user = {
     method: 'post',
     params: http.adornParams(params, false)
   }),
-  // 用户积分记录
-  userIntegralLogList: (params) => http({
-    url: http.adornUrl('/manage/user/userIntegralLogList'),
-    method: 'get',
-    params: http.adornParams(params, false)
-  }),
-  // 用户收藏记录
-  userCollectionList: (params) => http({
-    url: http.adornUrl('/manage/user/userCollectionList'),
-    method: 'get',
-    params: http.adornParams(params, false)
-  }),
-  // 修改分销用户积分
-  updateUserIntegral: (params) => http({
-    url: http.adornUrl('/manage/user/updateUserIntegral'),
-    method: 'post',
-    data: http.adornData(params, false)
-  })
+
 }
