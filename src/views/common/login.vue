@@ -111,7 +111,7 @@
       getCaptcha () {
         console.log('我是最帅的')
         this.dataForm.uuid = getUUID()
-        this.captchaPath = this.$http.adornUrl(`/captcha.jpg?uu'我是最帅的'is.dataForm.uuid}`)
+        this.captchaPath = this.$http.adornUrl(`/captcha.jpg?uuid=${this.dataForm.uuid}`)
       }
     }
   }
