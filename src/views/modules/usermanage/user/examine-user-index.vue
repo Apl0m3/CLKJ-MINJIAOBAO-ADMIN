@@ -91,16 +91,10 @@
                 dataListLoading: false,
                 dataListSelections: [],
               examineUserVisible: false,
-                userIntegralLogVisible: false,
-                userCollectionVisible: false,
-                updateUserIntegralVisible: false,
-                invitationUserVisible: false,
-
             }
         },
         components: {
           ExamineUser
-            // UserIntegralLog,
         },
         activated() {
             this.getDataList()

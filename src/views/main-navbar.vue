@@ -17,15 +17,15 @@
       <el-menu
         class="site-navbar__menu site-navbar__menu--right"
         mode="horizontal">
-        <el-menu-item index="3">
-          <el-dropdown :show-timeout="0" placement="bottom">
-            <i class="word-img"></i>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item @click.native="changeLanguage('zh-CN')">{{$t('sys.menu.Chinese')}}</el-dropdown-item>
-              <el-dropdown-item @click.native="changeLanguage('es-GT')">{{$t('sys.menu.Spanish')}}</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </el-menu-item>
+        <!--<el-menu-item index="3">-->
+          <!--<el-dropdown :show-timeout="0" placement="bottom">-->
+            <!--<i class="word-img"></i>-->
+            <!--&lt;!&ndash;<el-dropdown-menu slot="dropdown">&ndash;&gt;-->
+              <!--&lt;!&ndash;<el-dropdown-item @click.native="changeLanguage('zh-CN')">{{$t('sys.menu.Chinese')}}</el-dropdown-item>&ndash;&gt;-->
+              <!--&lt;!&ndash;<el-dropdown-item @click.native="changeLanguage('es-GT')">{{$t('sys.menu.Spanish')}}</el-dropdown-item>&ndash;&gt;-->
+            <!--&lt;!&ndash;</el-dropdown-menu>&ndash;&gt;-->
+          <!--</el-dropdown>-->
+        <!--</el-menu-item>-->
         <el-menu-item class="site-navbar__avatar" index="3">
           <el-dropdown :show-timeout="0" placement="bottom">
             <span class="el-dropdown-link">

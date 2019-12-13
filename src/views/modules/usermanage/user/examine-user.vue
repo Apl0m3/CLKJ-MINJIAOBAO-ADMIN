@@ -38,13 +38,13 @@
         </div>
       </el-form-item>
       <el-form-item  prop="avatar">
-        <el-radio-group  v-model="dataForm.status" >
-          <el-radio :label="0" value="0">审核通过</el-radio>
-          <el-radio :label="4" value="4">审核失败</el-radio>
+        <el-radio-group   v-model="dataForm.status" >
+          <el-radio  :label="0" value="0">审核通过</el-radio>
+          <el-radio  :label="4" value="4">审核失败</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item  v-if="dataForm.status==4" label="失败原因" prop="remark">
-        <el-input type="tel" v-model="dataForm.remark"  placeholder=""></el-input>
+      <el-form-item   label="失败原因" prop="remark">
+        <el-input type="tel"  v-model="dataForm.remark"  placeholder=""></el-input>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">

@@ -9,7 +9,7 @@ export const user = {
     method: 'post',
     data: http.adornData(params, false)
   }),
-  // 获取列表
+  // 获取注册举办者列表
   examineList: (params) => http({
     url: http.adornUrl('/manage/user/examineList'),
     method: 'get',
@@ -21,7 +21,7 @@ export const user = {
     method: 'get',
     params: http.adornParams({}, false)
   }),
-  // 获取信息
+  // 获取信息举办者详情
   examineUser: (params) => http({
     url: http.adornUrl('/manage/user/examineUser'),
     method: 'get',
@@ -51,6 +51,12 @@ export const user = {
   // 禁用 启用
   enableDisable: (params) => http({
     url: http.adornUrl('/manage/user/enableDisable'),
+    method: 'post',
+    params: http.adornParams(params, false)
+  }),
+  // 禁用 启用
+  updateUserRoleId: (params) => http({
+    url: http.adornUrl('/manage/user/updateUserRoleId'),
     method: 'post',
     params: http.adornParams(params, false)
   }),

@@ -1,36 +1,6 @@
 <template>
   <div class="mod-config">
     <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()" :rules="dataRule" >
-      <el-form-item prop="userName">
-        <el-input v-model="dataForm.userName" placeholder="手机号" clearable></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-select v-model="dataForm.userRoleId" :clearable="true" :placeholder="$t('manage.user.memberType_ph')">
-          <el-option :value="'1'" label="举办者"></el-option>
-          <el-option :value="'2'" label="教职工"></el-option>
-          <el-option :value="'3'" label="兼职客服"></el-option>
-        </el-select>
-      </el-form-item>
-
-      <!--<el-form-item>-->
-        <!--<el-date-picker-->
-          <!--v-model="dataForm.period"-->
-          <!--type="datetimerange"-->
-          <!--:picker-options="pickerOptions"-->
-          <!--range-separator="-"-->
-          <!--value-format="yyyy-MM-dd HH:mm:ss"-->
-          <!--:start-placeholder="$t('manage.user.startDate')"-->
-          <!--:end-placeholder="$t('manage.user.endDate')"-->
-          <!--align="right">-->
-        <!--</el-date-picker>-->
-      <!--</el-form-item>-->
-      <el-form-item>
-        <el-button @click="getDataList()">{{$t('common.select')}}</el-button>
-        <!--        <el-button v-if="isAuth('manage:adminuser:save')" type="primary" @click="addOrUpdateHandle()">{{$t('common.add')}}</el-button>-->
-        <!--        <el-button v-if="isAuth('manage:adminuser:delete')" type="danger" @click="deleteHandle()"-->
-        <!--                   :disabled="dataListSelections.length <= 0">批量删除-->
-        <!--        </el-button>-->
-      </el-form-item>
     </el-form>
     <el-table
       :data="dataList"

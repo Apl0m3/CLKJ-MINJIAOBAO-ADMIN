@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="!dataForm.id ? $t('common.add') : $t('common.update')"
+    title="用户金额信息"
     :close-on-click-modal="false"
     :before-close="clear"
     :visible.sync="visible">
@@ -28,21 +28,9 @@
       <!--<el-form-item label="地址" prop="address">-->
         <!--<el-input v-model="dataForm.address" :disabled="dataForm.id!==0" placeholder=""></el-input>-->
       <!--</el-form-item>-->
-      <el-form-item :label="$t('manage.user.avatar')" prop="avatar">
-        <el-upload
-          class="avatar-uploader"
-          :action="global.uploadUrl"
-          :show-file-list="false"
-          accept="image/jpeg,image/gif,image/png"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload">
-          <img v-if="dataForm.avatar" :src="global.showUrl+dataForm.avatar" class="avatar"
-               style="width: 178px;height: 178px">
-          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-        </el-upload>
+      <el-form-item label="用户金额" prop="userAccount">
+        <el-input v-model="dataForm.userAccount"  placeholder=""></el-input>
       </el-form-item>
-
-
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="clear">{{$t("common.cancel")}}</el-button>
@@ -53,7 +41,7 @@
 
 <script>
     import {user} from '@/action/user'
-
+    import {userAccount} from '../../../../../src/action/userAccount'
     export default {
         data() {
             var checkPhone = (rule, value, callback) => {
@@ -68,6 +56,18 @@
                     }
                 }
             };
+          const checkDouble = (rule, value, callback) => {
+            let double = /^(([0-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/
+
+            if (!double.test(value)) {
+              return callback(new Error(this.$t('manage.commodity.commodityExpect.error1')))
+            } else
+            if (Number(value) > 999999999.99) {
+              return callback(new Error(this.$t('manage.commodity.commodityExpect.error2')))
+            }
+
+            callback()
+          };
             return {
                 pickerOptions: {
                     // disabledDate是一个函数,参数是当前选中的日期值,这个函数需要返回一个Boolean值,
@@ -92,7 +92,9 @@
                     avatar: null,
                     createTime: '',
                     userRoleId: null,
-                  cards:''
+                  cards:'',
+                  userAccount:0,
+                  userAccountId:''
                 },
                 dataRule: {
                     name: [
@@ -102,6 +104,10 @@
                     avatar: [
                         {required: false, message: this.$t('manage.user.validate.avatar'), trigger: 'blur'}
                     ],
+                  userAccount:[
+                    {required: true, message: "金额不能为空", trigger: 'blur'},
+                    {validator:checkDouble}
+                  ]
                 }
             }
         },
@@ -138,6 +144,8 @@
                                 this.dataForm.avatar = data.adminUser.avatar;
                                 this.dataForm.cards = data.adminUser.cards;
                                 this.dataForm.userRoleId = data.adminUser.userRoleId;
+                                this.dataForm.userAccount=data.adminUser.userAccount
+                              this.dataForm.userAccountId=data.adminUser.userAccountId
                             }
                         })
                     }
@@ -145,38 +153,33 @@
             },
             // 表单提交
             dataFormSubmit() {
-                this.$refs['dataForm'].validate((valid) => {
-                    if (valid) {
-                        this.repeatVisible = true;
-                        let params = {
-                            'id': this.dataForm.id || undefined,
-                            'userName': this.dataForm.userName,
-                            'nickName': this.dataForm.nickName,
-                            'avatar': this.dataForm.avatar,
-                            'birthday': this.dataForm.birthday,
-                            'gender': this.dataForm.gender,
-                            'userRoleId': this.dataForm.userRoleId
-                        };
-                        let tick = !this.dataForm.id ? user.add(params) : user.update(params);
-                        tick.then(({data}) => {
-                            if (data && data.code === 200) {
-                                this.$message({
-                                    message: this.$t('common.success'),
-                                    type: 'success',
-                                    duration: 1500,
-                                    onClose: () => {
-                                        this.visible = false
-                                        this.$emit('refreshDataList')
-                                        this.repeatVisible = false;
-                                    }
-                                })
-                            } else {
-                                this.$message.error(data.msg);
-                                this.repeatVisible = false;
-                            }
-                        })
+              this.$refs['dataForm'].validate((valid) => {
+                if (valid) {
+                  this.repeatVisible = true;
+                  let params = {
+                    'id': this.dataForm.userAccountId,
+                    'userId': this.dataForm.id || undefined,
+                    'amount': this.dataForm.userAccount
+                  };
+                  userAccount.update(params).then(({data}) => {
+                    if (data && data.code === 200) {
+                      this.$message({
+                        message: this.$t('common.success'),
+                        type: 'success',
+                        duration: 1500,
+                        onClose: () => {
+                          this.visible = false
+                          this.$emit('refreshDataList')
+                          this.repeatVisible = false;
+                        }
+                      })
+                    } else {
+                      this.$message.error(data.msg);
+                      this.repeatVisible = false;
                     }
-                })
+                  })
+                }
+              })
             },
             handleAvatarSuccess(res, file) {
                 // this.imageUrl = URL.createObjectURL(file.raw);
