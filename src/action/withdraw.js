@@ -23,7 +23,7 @@ export const withdraw={
 
 // 修改
   update:(params) =>http({
-    url:  http.adornUrl('/withdraw/withdraw/update'),
+    url:  http.adornUrl('/withdraw/withdraw/verify'),
     method: 'post',
     data: http.adornData(params)
     }),

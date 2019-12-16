@@ -1,26 +1,35 @@
 <template>
   <el-dialog
-    :title="dataForm.id !== 0 ? '查看' : '审核'"
+    :title="dataForm.status !== '' ? '查看' : '审核'"
     :close-on-click-modal="false"
     :visible.sync="visible">
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="120px">
-      <el-form-item :disabled="dataForm.id === 0" label="申请人" prop="userId">
-        <el-input  v-model="dataForm.userId" placeholder="申请人id"></el-input>
+      <el-form-item  label="申请人" prop="userName">
+        <el-input :disabled="dataForm.id !== 0" v-model="dataForm.userName" placeholder=""></el-input>
       </el-form-item>
       <el-form-item label="提现金额" prop="amount">
-        <el-input v-model="dataForm.amount" placeholder="提现金额"></el-input>
+        <el-input :disabled="dataForm.id !== 0" v-model="dataForm.amount" placeholder="提现金额"></el-input>
       </el-form-item>
-      <el-form-item label="审核状态" prop="status">
-        <el-input v-model="dataForm.status" placeholder="审核状态 1成功 2失败"></el-input>
+      <!--        审核-->
+      <el-form-item    label="审核状态" prop="status">
+        <el-select v-model="dataForm.status"  >
+          <el-option label="审核通过" :value="1">
+            审核通过
+          </el-option>
+          <el-option label="审核失败" :value="2">
+            审核失败
+          </el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="审核失败原因" prop="reason">
-        <el-input v-model="dataForm.reason" placeholder="审核失败原因"></el-input>
+      <el-form-item v-if="dataForm.status ===2 " label="失败原因" prop="reason">
+        <el-input v-model="dataForm.reason" placeholder="请输入审核失败原因"></el-input>
       </el-form-item>
-      <el-form-item label="审核人id" prop="auditId">
-        <el-input v-model="dataForm.auditId" placeholder="审核人id"></el-input>
+
+      <el-form-item v-if="showStatusVisible === 1" label="审核人" prop="auditUserName">
+        <el-input :disabled="dataForm.id !== 0" v-model="dataForm.auditUserName" placeholder="审核人id"></el-input>
       </el-form-item>
-      <el-form-item label="审核时间" prop="auditTime">
-        <el-input v-model="dataForm.auditTime" placeholder="审核时间"></el-input>
+      <el-form-item v-if="showStatusVisible === 1" label="审核时间" prop="auditTime">
+        <el-input :disabled="dataForm.id !== 0" v-model="dataForm.auditTime" placeholder="审核时间"></el-input>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -39,19 +48,22 @@
         dataForm: {
           id: 0,
           userId: '',
+          userName:'',
           amount: '',
           status: '',
           reason: '',
           auditId: '',
+          auditUserName,
           auditTime: ''
         },
+        showStatusVisible:2, //1展示审核人和审核时间 2 不展示
         dataRule: {
-          userId: [
-            { required: true, message: '申请人id不能为空', trigger: 'blur' }
-          ],
-          amount: [
-            { required: true, message: '提现金额不能为空', trigger: 'blur' }
-          ],
+          // userId: [
+          //   { required: true, message: '申请人id不能为空', trigger: 'blur' }
+          // ],
+          // amount: [
+          //   { required: true, message: '提现金额不能为空', trigger: 'blur' }
+          // ],
           status: [
             { required: true, message: '审核状态 1成功 2失败不能为空', trigger: 'blur' }
           ],
@@ -69,7 +81,6 @@
     },
     methods: {
       init (id) {
-        console.log("1  哈哈哈哈哈")
         this.dataForm.id = id || 0
         this.visible = true
         this.$nextTick(() => {
@@ -77,13 +88,20 @@
           if (this.dataForm.id) {
             withdraw.info(this.dataForm.id).then(({data}) => {
               if (data && data.code === 200) {
-                console.log("哈哈哈哈哈")
-                this.dataForm.userId = data.withdraw.userId
+                this.dataForm.userId = data.withdraw.userId  //申请人的id
+                this.dataForm.userName = data.withdraw.userName  //申请人的姓名
                 this.dataForm.amount = data.withdraw.amount
-                this.dataForm.status = data.withdraw.status
+                this.dataForm.status = parseInt(data.withdraw.status) === 0 ? "": parseInt(data.withdraw.status)
+                //如果状态为审核 则不展示审核时间和审核人 1展示审核人和审核时间 2 不展示
+                if(this.dataForm.status !== ""){
+                  this.showStatusVisible = 1
+                }
                 this.dataForm.reason = data.withdraw.reason
-                this.dataForm.auditId = data.withdraw.auditId
+                this.dataForm.auditId = data.withdraw.auditId //审核人的id
+                this.dataForm.auditUserName = data.withdraw.auditUserName //审核人姓名
                 this.dataForm.auditTime = data.withdraw.auditTime
+                this.dataForm.createTime = data.withdraw.createTime //提交审核时间
+
               }
             })
           }
@@ -99,8 +117,6 @@
               'amount': this.dataForm.amount,
               'status': this.dataForm.status,
               'reason': this.dataForm.reason,
-              'auditId': this.dataForm.auditId,
-              'auditTime': this.dataForm.auditTime
             }
             var tick = !this.dataForm.id ? withdraw.add(params) : withdraw.update(params)
             tick.then(({data}) => {
