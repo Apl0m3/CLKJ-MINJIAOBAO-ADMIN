@@ -7,7 +7,7 @@
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>
         <el-button type="primary" @click="addOrUpdateHandle()">新增</el-button>
-        <el-button type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
+<!--        <el-button type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>-->
       </el-form-item>
     </el-form>
     <el-table
@@ -35,44 +35,54 @@
         label="用户id">
       </el-table-column>
       <el-table-column
-        prop="type"
+        prop="userBet"
         header-align="center"
         align="center"
-        label="账户类型">
+        label="用户投注数">
+<!--        <template slot-scope="scope">-->
+<!--          <el-tag v-if="scope.row.type === 1" size="small">举办者股权账户</el-tag>-->
+<!--          <el-tag v-else size="small">教职工股权账户</el-tag>-->
+<!--        </template>-->
+      </el-table-column>
+      <el-table-column
+        prop="userAwardNo"
+        header-align="center"
+        align="center"
+        label="用户抽奖号">
+      </el-table-column>
+      <el-table-column
+        prop="awardPeriods"
+        header-align="center"
+        align="center"
+        label="抽奖期数">
+      </el-table-column>
+      <el-table-column
+        prop="result"
+        header-align="center"
+        align="center"
+        label="是否中奖">
         <template slot-scope="scope">
-          <el-tag v-if="scope.row.type === 1" size="small">举办者股权账户</el-tag>
-          <el-tag v-else size="small">教职工股权账户</el-tag>
+          <el-tag v-if="scope.row.result === 1" size="small">中奖</el-tag>
+          <el-tag v-else size="small">未中奖</el-tag>
         </template>
       </el-table-column>
       <el-table-column
-        prop="amount"
+        prop="awardId"
         header-align="center"
         align="center"
-        label="股权数量">
+        label="奖品id">
       </el-table-column>
-      <el-table-column
-        prop="parentId"
-        header-align="center"
-        align="center"
-        label="所属机构id">
-      </el-table-column>
-      <el-table-column
-        prop="createTime"
-        header-align="center"
-        align="center"
-        label="创建时间">
-      </el-table-column>
-      <el-table-column
-        fixed="right"
-        header-align="center"
-        align="center"
-        width="150"
-        label="操作">
-        <template slot-scope="scope">
-          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-          <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">删除</el-button>
-        </template>
-      </el-table-column>
+<!--      <el-table-column-->
+<!--        fixed="right"-->
+<!--        header-align="center"-->
+<!--        align="center"-->
+<!--        width="150"-->
+<!--        label="操作">-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>-->
+<!--          <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">删除</el-button>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
     </el-table>
     <el-pagination
       @size-change="sizeChangeHandle"
@@ -89,8 +99,8 @@
 </template>
 
 <script>
-  import {stock} from '@/action/stock'
-  import AddOrUpdate from './add-or-update'
+  import {bet} from '@/action/bet'
+  import AddOrUpdate from './userbet-add-or-update'
 
   export default {
     data() {
@@ -124,7 +134,7 @@
           limit: this.pageSize,
           key: this.dataForm.key
         }
-        stock.list(params).then(({data}) => {
+        bet.list(params).then(({data}) => {
           if (data && data.code === 200) {
             this.dataList = data.page.list
             this.totalPage = data.page.totalCount
@@ -168,7 +178,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          stock.del(this.ids).then(({data}) => {
+          award.del(this.ids).then(({data}) => {
             if (data && data.code === 200) {
               this.$message({
                 message: '操作成功',
