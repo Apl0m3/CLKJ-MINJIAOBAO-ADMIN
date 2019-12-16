@@ -11,7 +11,7 @@
             <img class="img1" src="../../../static/img/loginLift.png" alt="">
             <div class="loginCenter">
               <img src="../../../static/img/logo.svg" alt="">
-              <h3 class="login-title">{{$t('manage.login.login')}} <span>SIGN IN</span></h3>
+              <h3 class="login-title">{{$t('manage.login.login')}} <span>民校宝后台管理系统</span></h3>
               <div class="loginFrom">
                 <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" status-icon>
                   <ul>

@@ -15,6 +15,12 @@ export const user = {
     method: 'get',
     params: http.adornParams(params, false)
   }),
+  // 获取活跃用户列表
+  activeUserList: (params) => http({
+    url: http.adornUrl('/manage/user/activeUserList'),
+    method: 'get',
+    params: http.adornParams(params, false)
+  }),
 // 获取信息
   info: (id) => http({
     url: http.adornUrl('/manage/user/info' + (isInteger(id) ? `/${id}` : '')),
@@ -66,5 +72,12 @@ export const user = {
     method: 'post',
     params: http.adornParams(params, false)
   }),
+  // 获取当天及当月的注册人数
+  peopleCount: () => http({
+    url: http.adornUrl('/manage/user/peopleCount'),
+    method: 'get',
+    params: http.adornParams({}, false)
+  }),
+
 
 }
