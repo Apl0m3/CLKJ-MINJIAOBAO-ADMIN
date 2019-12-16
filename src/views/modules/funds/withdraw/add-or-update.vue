@@ -12,7 +12,7 @@
       </el-form-item>
       <!--        审核-->
       <el-form-item    label="审核状态" prop="status">
-        <el-select v-model="dataForm.status"  >
+        <el-select :disabled="showStatusVisible === 1" v-model="dataForm.status"  >
           <el-option label="审核通过" :value="1">
             审核通过
           </el-option>
@@ -22,7 +22,7 @@
         </el-select>
       </el-form-item>
       <el-form-item v-if="dataForm.status ===2 " label="失败原因" prop="reason">
-        <el-input v-model="dataForm.reason" placeholder="请输入审核失败原因"></el-input>
+        <el-input :disabled="showStatusVisible === 1" v-model="dataForm.reason" placeholder="请输入审核失败原因"></el-input>
       </el-form-item>
 
       <el-form-item v-if="showStatusVisible === 1" label="审核人" prop="auditUserName">
@@ -53,7 +53,7 @@
           status: '',
           reason: '',
           auditId: '',
-          auditUserName,
+          auditUserName:'',
           auditTime: ''
         },
         showStatusVisible:2, //1展示审核人和审核时间 2 不展示
@@ -88,6 +88,7 @@
           if (this.dataForm.id) {
             withdraw.info(this.dataForm.id).then(({data}) => {
               if (data && data.code === 200) {
+                console.log(data)
                 this.dataForm.userId = data.withdraw.userId  //申请人的id
                 this.dataForm.userName = data.withdraw.userName  //申请人的姓名
                 this.dataForm.amount = data.withdraw.amount
@@ -118,7 +119,7 @@
               'status': this.dataForm.status,
               'reason': this.dataForm.reason,
             }
-            var tick = !this.dataForm.id ? withdraw.add(params) : withdraw.update(params)
+            var tick = !this.dataForm.id ? withdraw.add(params) : withdraw.verify(params)
             tick.then(({data}) => {
               if (data && data.code === 200) {
                 this.$message({

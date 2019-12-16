@@ -2,10 +2,15 @@
   <div class="mod-config">
     <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
       <el-form-item>
-        <el-input v-model="dataForm.key" placeholder="请输入姓名" clearable></el-input>
+        <el-input v-model="dataForm.thirdPartyName" placeholder="请输入平台名称" clearable></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-input v-model="dataForm.userName" placeholder="请输入用户名称" clearable></el-input>
       </el-form-item>
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>
+        <el-button v-if="isAuth('cashBack:thirdpartycashback:save')" type="primary" @click="addOrUpdateHandle()">新增</el-button>
+        <el-button v-if="isAuth('cashBack:thirdpartycashback:delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
       </el-form-item>
     </el-form>
     <el-table
@@ -14,47 +19,38 @@
       v-loading="dataListLoading"
       @selection-change="selectionChangeHandle"
       style="width: 100%;">
-<!--      <el-table-column-->
-<!--        type="selection"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--        width="50">-->
-<!--      </el-table-column>-->
-<!--      <el-table-column-->
-<!--        prop="id"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--        label="">-->
-<!--      </el-table-column>-->
+
       <el-table-column
-        prop="userName"
+        prop="thirdPartyName"
         header-align="center"
         align="center"
-        label="申请人">
+        label="返利平台">
       </el-table-column>
       <el-table-column
         prop="amount"
         header-align="center"
         align="center"
-        label="提现金额">
+        label="返利金额">
       </el-table-column>
+
       <el-table-column
-        prop="status"
+        prop="userName"
         header-align="center"
         align="center"
-        label="审核状态">
-        <template slot-scope="scope">
-          <!--未审核--><el-tag v-if="scope.row.status === 0" size="small" >未审核</el-tag>
-          <!--成功--><el-tag v-if="scope.row.status === 1" size="small" >成功</el-tag>
-          <!--失败--><el-tag v-if="scope.row.status === 2" size="small">失败</el-tag>
-        </template>
+        label="获得返利人姓名">
+      </el-table-column>
+      <el-table-column
+        prop="createTime"
+        header-align="center"
+        align="center"
+        label="返利创建时间">
       </el-table-column>
 
       <el-table-column
         prop="auditUserName"
         header-align="center"
         align="center"
-        label="审核人">
+        label="审核人姓名">
       </el-table-column>
       <el-table-column
         prop="auditTime"
@@ -63,14 +59,25 @@
         label="审核时间">
       </el-table-column>
       <el-table-column
+        prop="status"
+        header-align="center"
+        align="center"
+        label="审核状态">
+        <template slot-scope="scope">
+          <el-tag v-if="scope.row.status ===0">审核中</el-tag>
+          <el-tag v-if="scope.row.status ===1">审核成功</el-tag>
+          <el-tag v-if="scope.row.status ===2">审核失败</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column
         fixed="right"
         header-align="center"
         align="center"
         width="150"
         label="操作">
         <template slot-scope="scope">
-          <el-button v-if="scope.row.status !== 0"  type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">查看</el-button>
-          <el-button v-else type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">审核</el-button>
+          <el-button v-if="scope.row.status === 0" type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">审核</el-button>
+          <el-button v-else type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">查看</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -89,13 +96,14 @@
 </template>
 
 <script>
-  import {withdraw} from '../../../../action/withdraw'
+  import {cashBack} from '../../../../action/thirdpartycashback'
   import AddOrUpdate from './add-or-update'
   export default {
     data () {
       return {
         dataForm: {
-          key: ''
+          userName: '',
+          thirdPartyName:'',
         },
         dataList: [],
         pageIndex: 1,
@@ -119,11 +127,11 @@
         var params = {
           page: this.pageIndex,
           limit: this.pageSize,
-          key: this.dataForm.key
+          userName: this.dataForm.userName,
+          thirdPartyName: this.dataForm.thirdPartyName
         }
-        withdraw.list(params).then(({data}) => {
+        cashBack.list(params).then(({data}) => {
           if (data && data.code === 200) {
-            console.log( data.page.list)
             this.dataList = data.page.list
             this.totalPage = data.page.totalCount
           } else {
@@ -165,7 +173,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          withdraw.del(ids).then(({data}) => {
+          cashBack.del(ids).then(({data}) => {
             if (data && data.code === 200) {
               this.$message({
                 message: '操作成功',
