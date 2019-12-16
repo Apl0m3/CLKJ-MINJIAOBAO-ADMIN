@@ -29,38 +29,39 @@
         label="ID">
       </el-table-column>
       <el-table-column
-        prop="userId"
+        prop="awardType"
         header-align="center"
         align="center"
-        label="用户id">
-      </el-table-column>
-      <el-table-column
-        prop="type"
-        header-align="center"
-        align="center"
-        label="账户类型">
+        label="奖品类型">
         <template slot-scope="scope">
-          <el-tag v-if="scope.row.type === 1" size="small">举办者股权账户</el-tag>
-          <el-tag v-else size="small">教职工股权账户</el-tag>
+          <el-tag v-if="scope.row.awardType === 1" size="small">一等奖</el-tag>
+          <el-tag v-if="scope.row.awardType === 2" size="small">二等奖</el-tag>
+          <el-tag v-if="scope.row.awardType === 3" size="small">三等奖</el-tag>
+          <el-tag v-if="scope.row.awardType === 4" size="small">四等奖</el-tag>
+          <el-tag v-if="scope.row.awardType === 5" size="small">五等奖</el-tag>
         </template>
       </el-table-column>
       <el-table-column
-        prop="amount"
+        prop="awardMoney"
         header-align="center"
         align="center"
-        label="股权数量">
+        label="奖品金额">
+        <!--        <template slot-scope="scope">-->
+        <!--          <el-tag v-if="scope.row.type === 1" size="small">举办者股权账户</el-tag>-->
+        <!--          <el-tag v-else size="small">教职工股权账户</el-tag>-->
+        <!--        </template>-->
       </el-table-column>
       <el-table-column
-        prop="parentId"
+        prop="awardNum"
         header-align="center"
         align="center"
-        label="所属机构id">
+        label="奖品数量">
       </el-table-column>
       <el-table-column
-        prop="createTime"
+        prop="awardBet"
         header-align="center"
         align="center"
-        label="创建时间">
+        label="奖品投注数">
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -89,8 +90,8 @@
 </template>
 
 <script>
-  import {stock} from '@/action/stock'
-  import AddOrUpdate from './add-or-update'
+  import {award} from '@/action/award'
+  import AddOrUpdate from './award-add-or-update'
 
   export default {
     data() {
@@ -124,7 +125,7 @@
           limit: this.pageSize,
           key: this.dataForm.key
         }
-        stock.list(params).then(({data}) => {
+        award.list(params).then(({data}) => {
           if (data && data.code === 200) {
             this.dataList = data.page.list
             this.totalPage = data.page.totalCount
@@ -168,7 +169,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          stock.del(this.ids).then(({data}) => {
+          award.del(this.ids).then(({data}) => {
             if (data && data.code === 200) {
               this.$message({
                 message: '操作成功',
